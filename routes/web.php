@@ -21,7 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth', 'administrator'])->group(function (){
+//Route::middleware(['auth', 'administrator'])->group(function (){
+Route::middleware(['auth'])->group(function (){
     Route::post('books/filter',[BookController::class,'filterBooks'])->name('books.filter');
     Route::resources([
         'categories'=> CategoryController::class,

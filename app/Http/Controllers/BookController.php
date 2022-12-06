@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+//use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -75,6 +77,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        if (Gate::denies('edit')){
+            return redirect()->route('books.index');
+        }
         $book->category_id = $request->category_id;
         $book->name = $request->name;
         $book->resume = $request->resume;
