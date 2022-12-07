@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Book;
 use App\Models\User;
 //use Illuminate\Auth\Access\Gate;
+use App\Policies\BookPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -17,6 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Book::class=>BookPolicy::class
+
     ];
 
     /**
@@ -28,9 +32,17 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+
+
+        /*
         Gate::define('edit', function (User $user){
             return ($user->type=='admin');
         });
+
+        Gate::define('delete', function (User $user){
+            return ($user->type=='admin');
+        });
+        */
 
     }
 }

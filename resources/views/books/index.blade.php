@@ -31,14 +31,18 @@
                                     <td>{{ $book->page_numbers }}</td>
                                     <td>{{ $book->category->name }}</td>
                                     <td>
+                                        @can('update', $book)
                                         <a href=" {{ route('books.edit', $book->id) }}" class="btn btn-success">Redaguoti</a>
+                                        @endcan
                                     </td>
                                     <td>
+                                        @can('delete', $book)
                                         <form method="post" action="{{ route('books.destroy', $book->id) }}">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger">Ištrinti</button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

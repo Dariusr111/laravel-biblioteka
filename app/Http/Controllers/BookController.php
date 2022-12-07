@@ -77,9 +77,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        if (Gate::denies('edit')){
-            return redirect()->route('books.index');
-        }
+//        if (Gate::denies('edit')){
+//            return redirect()->route('books.index');
+//        }
         $book->category_id = $request->category_id;
         $book->name = $request->name;
         $book->resume = $request->resume;
@@ -112,8 +112,5 @@ class BookController extends Controller
             $categories= Category::where('category_id',$request->category_id)->get();
         }
     }
-
-
-
 
 }
